@@ -5,7 +5,7 @@ title: Home
 # Assemble Navigation Demo
 
 ## What this is about
-*Introduction text goes here. What are we dong and why.*
+*Introduction text goes here. What are we doing and why.*
 
 ### Git Repo
 Source code for this site is available on GitHub.

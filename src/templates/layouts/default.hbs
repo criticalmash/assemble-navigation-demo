@@ -4,31 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}} | {{site.title}}</title>
+    <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
+    {{> top-bar }}
 <!-- keep inline markdown left-aligned, so it formats correctly -->
     <div class="row">
       <h1>{{title}}</h1>
       <h2>{{ext}}</h2>
       {% body %}
     </div>
-   
-  
-
-  <div class="navi">
-    {{#each navigation.main.items }}
-      Row <a href="{{{url}}}">{{{title}}}</a>
-    {{/each}}
-  </div>
-  
-  <div class="get">
-    {{get data}}
-  </div>
 
     <div class="footer">
       <div class="row">
-        <p>Footer content goes here.</p>
+        <p>Built on {{moment site.timestamp 'MMMM Do YYYY'}} - 
+          View <a href="{{package.repobase}}/{{orig}}" target="_blank">source</a>
+        </p>
       </div>
     </div>
+    <script src="/js/app.js"></script>
   </body>
 </html>

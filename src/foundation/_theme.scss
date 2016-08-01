@@ -1,0 +1,35 @@
+/**
+ *
+ * Site theme styles and files
+ *
+ */
+
+body{
+  background: #ddd;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.current-page > a{
+  color: blue;
+}
+
+.footer{
+  background: $black;
+  color: #fff;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+
+// photo gallery
+.photo-gallery{
+  .column{
+    padding-bottom: 1rem;
+  }
+}
+
+

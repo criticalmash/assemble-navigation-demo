@@ -1,0 +1,14 @@
+---
+title: About this site
+menu-title: About
+---
+
+<h2>Packages Used</h2>
+
+{{#forIn package.dependencies}}
+  <a href="https://www.npmjs.com/package/{{@key}}" target="_blank">{{@key}}</a><br>
+{{/forIn}}
+
+{{midden 'app.cache.data.package'}}
+
+{{midden 'view.data'}}

@@ -1,0 +1,38 @@
+<div class="title-bar" data-responsive-toggle="page-top-bar" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title" data-toggle>{{site.title}}</div>
+</div>
+<div class="top-bar" id="page-top-bar">
+  <div class="row">
+    <div class="top-bar-left">
+      <ul class="drilldown menu" data-responsive-menu="drilldown medium-dropdown">
+        <li class="menu-text"><a href="/">{{site.title}}</a></li>
+        {{#collectionQuery navigation.main.items sortBy='data.menuOrder' sortDir='asc'}}
+
+          {{#compare linkId "!=" 'index'}}
+            {{#if items.length}}
+              <li class="has-dropdown{{#if isCurrentPage}} current-page{{/if}}{{#if isActive}} active{{/if}}" data-linkid="{{linkId}}">
+                <a href="{{{url}}}" >{{{title}}}</a>
+                <ul class="menu vertical">
+                  <li class="index-page {{#if isCurrentPage}}current-page{{/if}}{{#if isActive}} active{{/if}}"  data-linkid="{{linkId}}"><a href="{{{url}}}" >{{{title}}}</a></li>
+                  {{#each this.items}}
+                    <li class="{{#if isCurrentPage}}current-page{{/if}}{{#if isActive}} active{{/if}}"  data-linkid="{{linkId}}"><a href="{{{url}}}" >{{{title}}}</a></li>
+                  {{/each}}
+                </ul>
+              </li>
+            {{else}}
+              <li class="no-dropdown {{#if isCurrentPage}}current-page{{/if}}{{#if isActive}} active{{/if}}"  data-linkid="{{linkId}}">
+                <a href="{{{url}}}" {{#if data.target}}target="{{data.target}}" {{/if}} >{{{title}}}</a></li>
+            {{/if}}
+          {{/compare}}
+        {{/collectionQuery}}
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><input type="search" placeholder="Search"></li>
+        <li><button type="button" class="button">Search</button></li>
+      </ul>
+    </div>
+  </div>
+</div>
