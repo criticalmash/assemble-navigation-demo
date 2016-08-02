@@ -8,7 +8,7 @@ body{
   background: #ddd;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 2rem;
+  padding-bottom: 6rem;
 }
 
 .current-page > a{
@@ -25,11 +25,33 @@ body{
 }
 
 
-// photo gallery
-.photo-gallery{
-  .column{
-    padding-bottom: 1rem;
+/**
+ * Format code samples
+ */
+
+pre {
+  background: #fff;
+  border: solid 1px #ccc;
+  border-radius: .25rem;
+  padding: 1rem;
+  code{
+    background: none;
+    border: none;
   }
 }
 
+// .language-sh:before{
+//   content: '> ';
+// }
 
+
+
+// pre {
+//   background-color: #f7f7f7;
+//   border-radius: 3px;
+//   font-size: 85%;
+//   line-height: 1.45;
+//   overflow: auto;
+//   padding: 16px;
+//   word-wrap: normal;
+// }

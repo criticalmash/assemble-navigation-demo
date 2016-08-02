@@ -18,6 +18,8 @@ var markdownMid = require('assemble-middleware-md');
 
 //var through = require('through2');
 
+var hljs = require('highlight.js');
+
 /** Stylesheet packages */
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
@@ -74,8 +76,28 @@ var navigation = new Navigation();
 app.pages.onLoad(/\.hbs$|\.md$/, navigation.onLoad());
 app.pages.preRender(/\.hbs$|\.md$/, navigation.preRender());
 
-app.pages.onLoad(/\.md$/, markdownMid());
 
+function highlight(code, lang) {
+  try {
+    try {
+      return hljs.highlight(lang, code).value;
+    } catch (err) {
+      if (!/Unknown language/i.test(err.message)) {
+        throw err;
+      }
+      return hljs.highlightAuto(code).value;
+    }
+  } catch (err) {
+    return code;
+  }
+}
+app.pages.onLoad(/\.md$/, markdownMid({highlight: highlight}));
+
+/**
+ * A quick&dirty middleware to add a pages original path to
+ * the data attribute.
+ * Using this to build links to the source page on github.
+ */
 function setOrig() {
   return function (view, next) {
     if (typeof next !== 'function') {
@@ -99,7 +121,8 @@ app.pages.onLoad(/\.hbs$|\.md$/, setOrig());
  */
 var styleIncludes = [
   'node_modules/foundation-sites/scss/',
-  'node_modules/midden/dist/styles/'
+  'node_modules/midden/dist/styles/',
+  'node_modules/highlight.js/styles/'
 ];
 app.task('css', function () {
   return app.src('src/foundation/app.scss')
@@ -150,7 +173,6 @@ app.task('content', ['load', 'links'], function () {
 });
 
 
-
 /**
  * Serve and watch assets
  */
@@ -167,7 +189,7 @@ app.task('serve', function () {
 app.task('watch', function () {
   app.watch('src/content/**/*.{md,hbs}', ['content']);
   app.watch('src/templates/**/*.{md,hbs}', ['content']);
-  app.watch('src/scss/**/*.scss', ['css']);
+  app.watch('src/foundation/**/*.scss', ['css']);
 });
 
 
